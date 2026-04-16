@@ -84,13 +84,13 @@ The toolkit uses the same Medusa connection and works independently of the knowl
 
 ## Security
 
-NForce makes outbound requests to your Medusa store's Admin API for sync and toolkit operations. If your store is behind a firewall or CDN with IP restrictions, you'll need to whitelist NForce's egress IP address(es).
+All NForce requests to your Medusa store go through the plugin's `/admin/nforce/*` routes — no direct access to the standard Admin API is needed.
 
-**Routes NForce needs access to on your Medusa store:**
-- `GET/POST /admin/nforce/*` — plugin setup and health checks
-- `GET /admin/products*` — product sync (pull)
-- `GET /admin/customers*` — customer search (toolkit)
-- `GET /admin/orders*` — order lookup (toolkit)
+If your store is behind a firewall or CDN with IP restrictions, whitelist NForce's egress IP for:
+
+```
+/admin/nforce/*
+```
 
 Contact **support@nforce.ai** to get the IP address(es) for your NForce instance.
 
