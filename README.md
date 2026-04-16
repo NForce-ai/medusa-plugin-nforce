@@ -82,6 +82,18 @@ For live customer and order lookups, activate the **Medusa Commerce** toolkit on
 
 The toolkit uses the same Medusa connection and works independently of the knowledge sync.
 
+## Security
+
+NForce makes outbound requests to your Medusa store's Admin API for sync and toolkit operations. If your store is behind a firewall or CDN with IP restrictions, you'll need to whitelist NForce's egress IP address(es).
+
+**Routes NForce needs access to on your Medusa store:**
+- `GET/POST /admin/nforce/*` — plugin setup and health checks
+- `GET /admin/products*` — product sync (pull)
+- `GET /admin/customers*` — customer search (toolkit)
+- `GET /admin/orders*` — order lookup (toolkit)
+
+Contact **support@nforce.ai** to get the IP address(es) for your NForce instance.
+
 ## How it works
 
 ```
