@@ -39,6 +39,18 @@ export const POST = async (
   }
 
   const nforce = req.scope.resolve(NFORCE_MODULE) as NForceModuleService
+  const existing = await nforce.getConfig()
+
+  // Block setup if the admin hasn't completed the field selection wizard yet
+  if (!nforce.isConfigured(existing)) {
+    res.status(409).json({
+      error: "plugin_not_configured",
+      message:
+        "The NForce plugin needs initial setup. Open the NForce page in your Medusa admin to select which fields should be included in the knowledge base.",
+    })
+    return
+  }
+
   await nforce.saveConfig({
     api_url: body.api_url,
     source_id: body.source_id,
@@ -46,5 +58,6 @@ export const POST = async (
     plugin_token: body.plugin_token,
   })
 
-  res.json({ success: true })
+  // Return the field mask so NForce knows which fields to serialize
+  res.json({ success: true, field_mask: existing!.field_mask })
 }

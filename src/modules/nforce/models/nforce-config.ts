@@ -12,6 +12,7 @@ export const NForceConfig = model.define("nforce_config", {
   source_id: model.text(),   // Knowledge source ID on the NForce side
   push_url: model.text(),    // Full webhook URL: {webhooksBaseUrl}/knowledge/push/{sourceId}
   plugin_token: model.text(), // Per-source token for both push and read via X-Plugin-Token header
+  field_mask: model.json().nullable(), // User-selected fields for knowledge serialization
   last_synced_at: model.dateTime().nullable(),
   last_sync_status: model.text().nullable(),
   last_sync_error: model.text().nullable(),

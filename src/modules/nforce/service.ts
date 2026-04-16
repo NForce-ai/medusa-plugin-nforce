@@ -3,7 +3,10 @@ import { NForceConfig } from "./models/nforce-config"
 import {
   serializeMedusaProduct,
   type SerializableMedusaProduct,
+  type FieldMask,
 } from "../../utils/serialize-product"
+
+export type { FieldMask }
 
 export type NForceConfigShape = {
   id: string
@@ -11,6 +14,7 @@ export type NForceConfigShape = {
   source_id: string
   push_url: string
   plugin_token: string
+  field_mask: FieldMask | null
   last_synced_at: Date | null
   last_sync_status: string | null
   last_sync_error: string | null
@@ -92,6 +96,44 @@ class NForceModuleService extends MedusaService({
   }
 
   /**
+   * Save the user's field selection. Called from the setup wizard.
+   */
+  async saveFieldMask(fieldMask: FieldMask): Promise<void> {
+    const existing = await this.getConfig()
+    if (!existing) {
+      // No config yet — create a placeholder. The full config will be
+      // pushed by NForce during the first sync.
+      // @ts-ignore
+      await this.createNForceConfigs({
+        id: SINGLETON_ID,
+        api_url: "",
+        source_id: "",
+        push_url: "",
+        plugin_token: "",
+        field_mask: fieldMask,
+        last_synced_at: null,
+        last_sync_status: null,
+        last_sync_error: null,
+        document_count: 0,
+      })
+      return
+    }
+
+    // @ts-ignore
+    await this.updateNForceConfigs({
+      id: SINGLETON_ID,
+      field_mask: fieldMask,
+    })
+  }
+
+  /**
+   * Check if the plugin has been configured (field mask selected).
+   */
+  isConfigured(config: NForceConfigShape | null): boolean {
+    return !!config?.field_mask
+  }
+
+  /**
    * Update sync state metadata after a sync or push attempt.
    */
   async setSyncState(state: {
@@ -122,8 +164,8 @@ class NForceModuleService extends MedusaService({
    * Serialize a Medusa product into the canonical document text.
    * Mirrors api.nforce.ai/app/services/knowledge/medusa_product_serializer.ts.
    */
-  serializeProduct(product: SerializableMedusaProduct): string {
-    return serializeMedusaProduct(product)
+  serializeProduct(product: SerializableMedusaProduct, fieldMask?: FieldMask): string {
+    return serializeMedusaProduct(product, fieldMask)
   }
 
   /**

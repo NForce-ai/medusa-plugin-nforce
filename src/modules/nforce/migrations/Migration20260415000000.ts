@@ -9,6 +9,7 @@ export class Migration20260415000000 extends Migration {
         "source_id" text not null,
         "push_url" text not null,
         "plugin_token" text not null,
+        "field_mask" jsonb null,
         "last_synced_at" timestamptz null,
         "last_sync_status" text null,
         "last_sync_error" text null,

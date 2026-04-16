@@ -17,17 +17,19 @@ export const GET = async (
   const config = await nforce.getConfig()
 
   if (!config) {
-    res.json({ configured: false })
+    res.json({ configured: false, has_field_mask: false })
     return
   }
 
+  // "configured" means NForce has pushed connection config (api_url, push_url, etc.)
+  // "has_field_mask" means the admin has completed the field selection wizard
+  const configured = !!config.api_url && !!config.push_url
+  const hasFieldMask = !!config.field_mask
+
   res.json({
-    configured: true,
-    api_url: config.api_url,
-    source_id: config.source_id,
-    last_synced_at: config.last_synced_at,
-    last_sync_status: config.last_sync_status,
-    last_sync_error: config.last_sync_error,
-    document_count: config.document_count,
+    configured,
+    has_field_mask: hasFieldMask,
+    api_url: config.api_url || null,
+    source_id: config.source_id || null,
   })
 }
