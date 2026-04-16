@@ -1,5 +1,8 @@
 # medusa-plugin-nforce
 
+[![npm version](https://img.shields.io/npm/v/medusa-plugin-nforce.svg)](https://www.npmjs.com/package/medusa-plugin-nforce)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Real-time product sync from a [Medusa v2](https://medusajs.com) store to an [NForce](https://nforce.ai) knowledge base.
 
 When products are created, updated, or deleted in your Medusa store, the plugin serializes the full product graph (variants, prices, options, categories, collection, tags, custom modules) and pushes it to a configured NForce knowledge source. The NForce side chunks, embeds, and indexes the document so AI agents can answer customer questions about your catalog.

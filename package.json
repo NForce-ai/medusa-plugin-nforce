@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/nforce-ai/medusa-plugin-nforce"
   },
+  "homepage": "https://www.npmjs.com/package/medusa-plugin-nforce",
   "files": [
     ".medusa/server"
   ],
