@@ -9,31 +9,11 @@ When products are created, updated, or deleted in your Medusa store, the plugin 
 
 ## Install
 
-**From npm** (once published):
-
 ```bash
 yarn add medusa-plugin-nforce
 ```
 
-**Local development** (before publishing):
-
-```bash
-# 1. In the plugin directory — install deps, build, and publish to local Yalc registry
-cd medusa-plugin-nforce
-yarn install
-yarn build
-yarn publish:local
-
-# 2. In your Medusa project — add from local registry
-cd your-medusa-project
-yarn medusa plugin:add medusa-plugin-nforce
-
-# 3. For live reload during development (in the plugin directory)
-cd medusa-plugin-nforce
-yarn medusa plugin:develop
-```
-
-Then add it to your `medusa-config.ts`:
+Add it to your `medusa-config.ts`:
 
 ```ts
 module.exports = defineConfig({
