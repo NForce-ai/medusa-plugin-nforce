@@ -809,6 +809,24 @@ const StatusPage = ({
           )}
         </Container>
       )}
+
+      {/* Security note */}
+      <Container className="p-0">
+        <div className="px-6 py-4">
+          <Text size="xsmall" className="text-ui-fg-muted">
+            If your store is behind a firewall or CDN, whitelist NForce's IP
+            address for <code className="text-xs">/admin/nforce/*</code> routes.
+            Contact{" "}
+            <a
+              href="mailto:support@nforce.ai"
+              className="text-ui-fg-interactive hover:underline"
+            >
+              support@nforce.ai
+            </a>{" "}
+            to get your NForce instance's IP address(es).
+          </Text>
+        </div>
+      </Container>
     </div>
   )
 }
