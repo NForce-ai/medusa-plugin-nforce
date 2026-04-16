@@ -593,7 +593,7 @@ const StatusPage = ({
           <div className="px-6 py-4">
             <div className="grid grid-cols-2 gap-y-3 text-ui-fg-subtle">
               <Text size="small" weight="plus">
-                Documents synced
+                Products synced
               </Text>
               <Text size="small">{status.document_count ?? "—"}</Text>
 
