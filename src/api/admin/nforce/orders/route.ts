@@ -2,7 +2,7 @@ import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
 } from "@medusajs/framework/http"
-import { Modules } from "@medusajs/framework/utils"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
 /**
  * GET /admin/nforce/orders?customer_id=...&display_id=...&limit=5
@@ -15,22 +15,29 @@ export const GET = async (
   res: MedusaResponse
 ) => {
   try {
-    const orderService = req.scope.resolve(Modules.ORDER) as any
+    const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
     const limit = Math.min(parseInt(req.query.limit as string) || 5, 50)
 
     const filters: Record<string, any> = {}
     if (req.query.customer_id) filters.customer_id = req.query.customer_id
     if (req.query.display_id) filters.display_id = parseInt(req.query.display_id as string)
 
-    const orders = await orderService.listOrders(filters, {
-      select: [
-        "id", "display_id", "status", "currency_code",
-        "total", "payment_status", "fulfillment_status",
+    const { data: orders } = await query.graph({
+      entity: "order",
+      filters,
+      fields: [
+        "id",
+        "display_id",
+        "status",
+        "payment_status",
+        "fulfillment_status",
+        "currency_code",
+        "total",
         "created_at",
+        "items.title",
+        "items.quantity",
       ],
-      relations: ["items"],
-      take: limit,
-      order: { created_at: "DESC" },
+      pagination: { take: limit, order: { created_at: "DESC" } },
     })
 
     res.json({ orders })
