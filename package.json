@@ -1,6 +1,6 @@
 {
   "name": "medusa-plugin-nforce",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Real-time product sync from Medusa to nForce knowledge bases.",
   "author": "nForce",
   "license": "MIT",
