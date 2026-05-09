@@ -742,7 +742,7 @@ const StatusPage = ({
                     )}
                   </div>
 
-                  {agent.type === "webchat" && agent.widget_snippet && (
+                  {agent.type === "conversational" && agent.widget_snippet && (
                     <div className="mt-2">
                       <Text
                         size="xsmall"
