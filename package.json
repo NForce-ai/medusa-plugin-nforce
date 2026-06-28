@@ -1,6 +1,6 @@
 {
   "name": "medusa-plugin-nforce",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Real-time product sync from Medusa to nForce knowledge bases.",
   "author": "nForce",
   "license": "MIT",
@@ -41,12 +41,12 @@
     "publish:local": "medusa plugin:publish"
   },
   "devDependencies": {
-    "@medusajs/admin-sdk": "2.13.5",
-    "@medusajs/cli": "2.13.5",
-    "@medusajs/framework": "2.13.5",
-    "@medusajs/icons": "2.13.5",
-    "@medusajs/medusa": "2.13.5",
-    "@medusajs/ui": "4.1.5",
+    "@medusajs/admin-sdk": "2.17.1",
+    "@medusajs/cli": "2.17.1",
+    "@medusajs/framework": "2.17.1",
+    "@medusajs/icons": "2.17.1",
+    "@medusajs/medusa": "2.17.1",
+    "@medusajs/ui": "4.1.18",
     "@mikro-orm/migrations": "^6.4.3",
     "@swc/core": "^1.7.28",
     "@tanstack/react-query": "5.64.2",
@@ -58,11 +58,11 @@
     "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
-    "@medusajs/admin-sdk": "2.13.5",
-    "@medusajs/cli": "2.13.5",
-    "@medusajs/framework": "2.13.5",
-    "@medusajs/icons": "2.13.5",
-    "@medusajs/ui": "4.1.5",
+    "@medusajs/admin-sdk": "2.17.1",
+    "@medusajs/cli": "2.17.1",
+    "@medusajs/framework": "2.17.1",
+    "@medusajs/icons": "2.17.1",
+    "@medusajs/ui": "4.1.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
